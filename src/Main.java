@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,11 +76,10 @@ public class Main {
     }
 
     private static void DisplayQuestions(List<Question> questions) {
-            for(var q: questions)
-            {
-                System.out.println(q.getQuestionId() + " "+ q.getQuestion() + " "+q.getAnswers() + " " + q.getCorrectAnswer());
-            }
 
-    }
+        Collections.shuffle(questions);
+        for(Question q : questions)
+           System.out.println(q.getQuestionId() + " "+ q.getQuestion() + " "+q.getAnswers() + " " + q.getCorrectAnswer());
+        }
 
 }
