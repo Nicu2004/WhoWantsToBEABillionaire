@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
@@ -21,7 +22,11 @@ public class Main {
         } catch (IOException e) {
             System.err.println("Error creating file: " + e.getMessage());
         }
-            GameClass Game = new GameClass(fileName);
+        Scanner input = new Scanner(System.in);
+        System.out.print("Please enter your name: ");
+        String name =  input.nextLine();
+        Player player = new Player(name);
+            GameClass Game = new GameClass(fileName, player);
         Game.StartGame();
 
     }

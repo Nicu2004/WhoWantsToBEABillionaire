@@ -9,20 +9,22 @@ import java.util.regex.Pattern;
 
 public class GameClass {
         private List<Question> questions  = new ArrayList<>();
+        private Player player;
         private String fileName;
 
-        public GameClass(String fileName) throws FileNotFoundException {
+        public GameClass(String fileName, Player player) throws FileNotFoundException {
 
             this.fileName = fileName;
+            this.player = player;
         }
         public void StartGame() throws FileNotFoundException {
             loadQuestions() ;
         }
-
+        File questionsFile = new File(fileName);
+        Scanner reader = new Scanner(questionsFile);
         private void loadQuestions() throws FileNotFoundException {
 
-            File questionsFile = new File(fileName);
-            Scanner reader = new Scanner(questionsFile);
+
 
             while (reader.hasNextLine()) {
                 // read question line number and question text
@@ -46,7 +48,7 @@ public class GameClass {
                 Question q = new Question(questionNumber, questiontext, answers, correctAnswer);
                 questions.add(q);
             }
-            reader.close();
+
 
             List<Question>groupedQuestions = new ArrayList<>(5);
             int level = 1;
@@ -67,6 +69,7 @@ public class GameClass {
                 DisplayQuestions(groupedQuestions);
 
             }
+
         }
 
         public void DisplayQuestions(List<Question> questions) {
@@ -75,7 +78,6 @@ public class GameClass {
             for(Question q : questions) {
                 System.out.println(q.getQuestionId() + " " + q.getQuestion() + " " + q.getAnswers());
                 System.out.println("Plase enter the answer, a number between 0, 2");
-                Scanner sc =  new Scanner(System.in);
 
                 if(checkAnswer(q)) {
                     score++;
@@ -85,14 +87,14 @@ public class GameClass {
                     if(score!=25) {
                         System.out.println("Sorry you dindt become a millionare\n you want to try again?");
                         String option;
-                        Scanner scr = new Scanner(System.in);
-                        option = scr.nextLine();
+
+                        option = reader.nextLine();
                         if(option.equals("yes")) {
                             DisplayQuestions(questions);
                         }
                         else
                             break;
-                        scr.close();
+
                     }
                 }
             }
@@ -111,6 +113,7 @@ public class GameClass {
         }
         return false;
     }
+
 
 
 
