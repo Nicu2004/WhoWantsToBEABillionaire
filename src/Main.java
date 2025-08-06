@@ -24,9 +24,13 @@ public class Main {
         }
         Scanner input = new Scanner(System.in);
         System.out.print("Please enter your name: ");
-        String name =  input.nextLine();
+        String name =  input.next();
+
         Player player = new Player(name);
-            GameClass Game = new GameClass(fileName, player);
+        System.out.print(player.getName());
+        int[] percentages  = PercentageDistribution.generatePercentages();
+        System.out.print(percentages);
+        GameClass Game = new GameClass(fileName, player);
         Game.StartGame();
 
     }

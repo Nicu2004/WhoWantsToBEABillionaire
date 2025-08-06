@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GameClass {
+
         private List<Question> questions  = new ArrayList<>();
         private Player player;
         private String fileName;
@@ -20,11 +21,11 @@ public class GameClass {
         public void StartGame() throws FileNotFoundException {
             loadQuestions() ;
         }
-        File questionsFile = new File(fileName);
-        Scanner reader = new Scanner(questionsFile);
+
+
         private void loadQuestions() throws FileNotFoundException {
-
-
+            File questionsFile = new File(fileName);
+            Scanner reader = new Scanner(questionsFile);
 
             while (reader.hasNextLine()) {
                 // read question line number and question text
@@ -69,11 +70,13 @@ public class GameClass {
                 DisplayQuestions(groupedQuestions);
 
             }
+            reader.close();
 
         }
 
         public void DisplayQuestions(List<Question> questions) {
             Collections.shuffle(questions);
+            Scanner reader = new Scanner(System.in);
             int score = 0;
             for(Question q : questions) {
                 System.out.println(q.getQuestionId() + " " + q.getQuestion() + " " + q.getAnswers());
@@ -98,6 +101,7 @@ public class GameClass {
                     }
                 }
             }
+            reader.close();
         }
 
     boolean checkAnswer(Question q)
