@@ -18,31 +18,13 @@ public class Question {
         return questionId;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
-
     public int getCorrectAnswer() {
         return correctAnswer;
     }
-
-    public void setCorrectAnswer(int correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
-
     public List<String> getAnswers() {
         return answers;
     }
-
-    public void setAnswers(List<String> answers) {
-        this.answers = answers;
-    }
-
     public String getQuestion() {
         return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
     }
 }

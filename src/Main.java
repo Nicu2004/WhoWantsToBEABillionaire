@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +25,7 @@ public class Main {
         String name =  input.next();
 
         Player player = new Player(name);
-        System.out.print(player.getName());
+        System.out.print(player.name());
         int[] percentages  = PercentageDistribution.generatePercentages();
         System.out.print(percentages);
         GameClass Game = new GameClass(fileName, player);
