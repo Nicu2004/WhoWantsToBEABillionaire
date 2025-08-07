@@ -25,9 +25,8 @@ public class Main {
         String name =  input.next();
 
         Player player = new Player(name);
-        System.out.print(player.name());
-        int[] percentages  = PercentageDistribution.generatePercentages();
-        System.out.print(percentages);
+
+        System.out.println();
         GameClass Game = new GameClass(fileName, player);
         Game.StartGame();
 

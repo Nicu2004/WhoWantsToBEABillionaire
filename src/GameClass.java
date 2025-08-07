@@ -1,19 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GameClass {
 
-        private List<Question> questions  = new ArrayList<>();
+        private final List<Question> questions  = new ArrayList<>();
         private Player player;
-        private String fileName;
-        Scanner sc = new Scanner(System.in)
-                ;
+        private final String fileName;
+        Scanner sc = new Scanner(System.in);
+
         public GameClass(String fileName, Player player) {
 
             this.fileName = fileName;
@@ -21,6 +18,7 @@ public class GameClass {
         }
 
         public void StartGame() throws FileNotFoundException {
+            System.out.printf("Welcome %s to Who Wants To Be A Millionare\n", player.name());
             loadQuestions() ;
         }
         private void loadQuestions() throws FileNotFoundException {
@@ -78,8 +76,9 @@ public class GameClass {
 
             int score = 0;
             for(Question q : questions) {
-                System.out.println(q.getQuestionId() + " " + q.getQuestion() + " " + q.getAnswers());
-                System.out.println("Plase enter the answer, a number between 1 and 4");
+                System.out.println(q.getQuestionId() + " " + q.getQuestion() + " " + q.getAnswers()+"\n");
+                System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT+"Plase enter the answer, a number between 1 and 4\n"+ConsoleColors.RESET);
+
 
                 if(checkAnswer(q)) {
                     score++;
@@ -91,7 +90,7 @@ public class GameClass {
                         String option;
 
                         option = sc.nextLine();
-                        if(option.equals("yes")) {
+                        if(option.equalsIgnoreCase("yes")) {
                             return 2;//restart the game, so the level becomes 1 again
                         }
                         else
@@ -105,16 +104,58 @@ public class GameClass {
 
     boolean checkAnswer(Question q)
     {
-        int answer = sc.nextInt();
-        sc.nextLine();
-        if(answer-1 <0||answer-1>3) {
-            System.out.println("Number between 1 and 4");
-            checkAnswer(q);
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.nextLine();
+        int option=-1;
+        switch (answer) {
+            case "a" -> askAudience(q);//ask audience
+            case "c" -> callFriend();//call a friend
+            case "f" -> make50_50();//make 50/50;
+            case "1", "2", "3", "4" -> option = Integer.parseInt(answer) ;
+            default -> System.out.println("Invalid option");
+        };
+        if(option==-1) {
+            System.out.println("plase Select the option");
+            int varinat = sc.nextInt();
+            return varinat - 1 == q.getCorrectAnswer();
         }
-        if(answer-1 == q.getCorrectAnswer()) {
-            return true;
-        }
-        return false;
+        else return option -1 == q.getCorrectAnswer();
     }
+    void askAudience(Question q)
+    {
+        int[] audienceResponse =  PercentageDistribution.generatePercentages();
+        swapInList(audienceResponse,q.getCorrectAnswer());
+    }
+    void swapInList(int[] newAudience, int correctIndex)
+    {
+        int maxIndex = 0;
+
+        for (int j = 1; j < newAudience.length; j++) {
+            if (newAudience[j] > newAudience[maxIndex]) {
+                maxIndex = j;
+            }
+        }
+
+        var tmp =  newAudience[maxIndex];
+        newAudience[maxIndex] = newAudience[correctIndex];
+        newAudience[correctIndex] = tmp;
+        System.out.println(Arrays.toString(newAudience));
+
+    }
+    int getOption(String option, Question q)
+    {
+        return switch (option) {
+            case "a" -> 1;
+            case "c" -> 2;
+            case "f" -> 3;
+            case "1", "2", "3", "4" -> 0;
+            default -> -1;
+        };
+    }
+    void callFriend()
+    {}
+    void make50_50()
+    {}
+
 
 }
