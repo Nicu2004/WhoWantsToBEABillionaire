@@ -17,7 +17,6 @@ public class Question {
     public int getQuestionId() {
         return questionId;
     }
-
     public int getCorrectAnswer() {
         return correctAnswer;
     }

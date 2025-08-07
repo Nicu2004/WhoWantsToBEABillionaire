@@ -23,12 +23,9 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.print("Please enter your name: ");
         String name =  input.next();
-
         Player player = new Player(name);
-
         System.out.println();
         GameClass Game = new GameClass(fileName, player);
         Game.StartGame();
-
     }
 }

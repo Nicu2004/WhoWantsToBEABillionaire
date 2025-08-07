@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.*;
@@ -71,7 +72,6 @@ public class GameClass {
                 }
             }
         }
-
         public int DisplayQuestions(List<Question> questions) {
             Collections.shuffle(questions);
 
@@ -97,7 +97,6 @@ public class GameClass {
                         else
                            return 0;//close the game
                     }
-
                 }
             }
             return 1;//continue the game
@@ -109,37 +108,45 @@ public class GameClass {
         String answer = sc.nextLine();
         int option=-1;
         switch (answer) {
-            case "a" -> askAudience(q);//ask audience
-            case "c" -> System.out.println(callFriend(q));//call a friend
-            case "f" -> option = make50_50(q);//make 50/50;
+            case "a" -> {
+                askAudience(q);
+                return checkAnswer(q);
+            }
+            case "c" -> {
+                System.out.println(callFriend(q));
+                return checkAnswer(q);
+            }
+            case "f" -> {
+                option = make50_50(q);
+                System.out.println("Chose 1 or 2");
+                try{
+                    int userChoise = Integer.parseInt(sc.nextLine());
+                    return userChoise == option;
+                }catch(NumberFormatException e) {
+                    System.out.println(ConsoleColors.RED+"Invalid input"+ConsoleColors.RESET);
+                    return checkAnswer(q);
+                }
+            }//make 50/50;
             case "1", "2", "3", "4" -> option = Integer.parseInt(answer) ;
             default -> {
                 System.out.println("Invalid option please select a number if you know the answer \n between 1 - 4 or a to ask the audience, c to call a friend or f to make it 50% 50%");
-                checkAnswer(q);
+                return checkAnswer(q);
             }
         }
-        if(option==-1) {
-            int variant = sc.nextInt();
-            return variant - 1 == q.getCorrectAnswer();
-        }
-        else return option -1 == q.getCorrectAnswer();
+        return option -1 == q.getCorrectAnswer();
     }
-
     void distributeAudienceCorrectAnswer(int[] newAudience, int correctIndex)
     {
         int maxIndex = 0;
-
         for (int j = 1; j < newAudience.length; j++) {
             if (newAudience[j] > newAudience[maxIndex]) {
                 maxIndex = j;
             }
         }
-
         var tmp =  newAudience[maxIndex];
         newAudience[maxIndex] = newAudience[correctIndex];
         newAudience[correctIndex] = tmp;
         System.out.println(Arrays.toString(newAudience));
-
     }
     //methods to ask for help
     void askAudience(Question q)
@@ -173,13 +180,19 @@ public class GameClass {
         do{
             randomAnswer = rand.nextInt(q.getAnswers().size());
         }while(randomAnswer==correctAnswer);
-        fiftyLine.add(q.getAnswers().get(randomAnswer));
-        fiftyLine.add(q.getAnswers().get(correctAnswer));
-        Collections.shuffle(fiftyLine);
+        boolean firstIsCorrect = rand.nextBoolean();
+        if(firstIsCorrect)
+        {
+            fiftyLine.add(q.getAnswers().get(correctAnswer));
+            fiftyLine.add(q.getAnswers().get(randomAnswer));
+        }
+        else {
+            fiftyLine.add(q.getAnswers().get(randomAnswer));
+            fiftyLine.add(q.getAnswers().get(correctAnswer));
+        }
         System.out.println(Arrays.toString(fiftyLine.toArray()));
-        correctAnswer -=2;
-        if(correctAnswer<0)
-            correctAnswer = 0;
-        return correctAnswer;
+        if(firstIsCorrect)
+            return 1;
+        else return 2;
     }
 }
