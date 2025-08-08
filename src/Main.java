@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
@@ -20,12 +19,10 @@ public class Main {
         } catch (IOException e) {
             System.err.println("Error creating file: " + e.getMessage());
         }
-        Scanner input = new Scanner(System.in);
-        System.out.print("Please enter your name: ");
-        String name =  input.next();
-        Player player = new Player(name);
-        System.out.println();
-        GameClass Game = new GameClass(fileName, player);
-        Game.StartGame();
+        boolean player = true;
+        GameClass GamePlayer = new GameClass(fileName, player);//
+        GamePlayer.startGame();
+//        GameClass GameUSer = new GameClass(fileName, !player);
+//        GameUSer.startGame();
     }
 }
