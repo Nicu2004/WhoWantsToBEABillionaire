@@ -1,10 +1,12 @@
 package org.example.interfaces;
 
-import org.example.objects.player.PlayerResults;
+import org.example.dbIMplemenations.pgDatabaseConnect;
+import org.example.objects.player.Player;
 
-import java.util.HashMap;
+import java.sql.SQLException;
+
 
 public interface PlayerResultRepository {
     String loadPlayerResults();
-    void savePlayerResults(HashMap<String, PlayerResults> playerResults);
+    void savePlayerResults(pgDatabaseConnect pg, String name, int score, String result) throws SQLException;
 }

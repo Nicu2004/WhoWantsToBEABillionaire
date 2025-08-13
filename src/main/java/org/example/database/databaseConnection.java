@@ -1,14 +1,7 @@
 package org.example.database;
 
 import org.example.dbIMplemenations.pgDatabaseConnect;
-import org.example.implementations.DefaultQuestionRepository;
-import org.example.objects.questionBehaivior.Question;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import java.util.Calendar;
-import java.util.List;
 import org.example.interfaces.*;
 
 

@@ -1,10 +1,15 @@
 package org.example.implementations;
 
+import org.example.dbIMplemenations.pgDatabaseConnect;
 import org.example.interfaces.PlayerResultRepository;
+import org.example.objects.player.Player;
 import org.example.objects.player.PlayerResultLoader;
-import org.example.objects.player.PlayerResults;
 
-import java.util.HashMap;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class FilePlayerResultRepository implements PlayerResultRepository {
     private final String fileName;
@@ -20,8 +25,16 @@ public class FilePlayerResultRepository implements PlayerResultRepository {
     }
 
     @Override
-    public void savePlayerResults(HashMap<String, PlayerResults> results) {
-        // Implementation for saving results
-        // You can implement this later
+    public void savePlayerResults(pgDatabaseConnect pg, String name, int score, String result) throws SQLException {
+        String sql = "INSERT INTO Players (name, score, result, playDate) VALUES (?, ?, ?, ?)";;
+        PreparedStatement ps = pg.getConnection().prepareStatement(sql);
+        ps.setString(1, name);
+        ps.setInt(2, score);
+        ps.setString(3, result.toUpperCase());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String date = sdf.format(cal.getTime());
+        ps.setString(4, date);
+        ps.executeUpdate();
     }
 }

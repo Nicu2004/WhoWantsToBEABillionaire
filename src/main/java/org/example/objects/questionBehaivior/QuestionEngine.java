@@ -1,5 +1,7 @@
 package org.example.objects.questionBehaivior;
 
+import org.example.objects.player.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +12,7 @@ public class QuestionEngine {
     public QuestionEngine(QuestionHandler questionHandler) {
         this.questionHandler = questionHandler;
     }
-    public int iterateQuestion(List<Question> questionList, int score)
+    public int iterateQuestion(List<Question> questionList, int score, Player player)
     {
         for(Question q: questionList)
         {
@@ -18,6 +20,7 @@ public class QuestionEngine {
             if(questionHandler.checkAnswer(q, true))
             {
                 score++;
+                player.setScore(score);
                 System.out.println("Correct! your score is "+score);
             }
             else {

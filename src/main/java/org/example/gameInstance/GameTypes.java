@@ -31,7 +31,7 @@ public class GameTypes {
 
         int score = 0;
         List<Question> groupedQuestions = questionEngine.groupQuestions(questions);
-        score = questionEngine.iterateQuestion(groupedQuestions, score) ;
+        score = questionEngine.iterateQuestion(groupedQuestions, score, player) ;
         if(score == 5)
             Printer.showWinnerMessage(player);
         else

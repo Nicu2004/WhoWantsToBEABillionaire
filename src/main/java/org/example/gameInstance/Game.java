@@ -1,4 +1,6 @@
 package org.example.gameInstance;
+import org.example.database.databaseConnection;
+import org.example.dbIMplemenations.pgDatabaseConnect;
 import org.example.implementations.ConsoleGameDisplay;
 import org.example.implementations.StandardGameMode;
 import org.example.implementations.ContinousGameEndCondition;
@@ -7,15 +9,20 @@ import org.example.implementations.DefaultQuestionRepository;
 import org.example.implementations.FilePlayerResultRepository;
 import org.example.interfaces.*;
 import org.example.objects.player.Player;
-import org.example.objects.player.PlayerResults;
 import org.example.objects.questionBehaivior.Question;
 import org.example.objects.questionBehaivior.QuestionHandler;
-
 import java.sql.SQLException;
-import java.util.HashMap;
+
+import java.sql.Statement;
 import java.util.List;
 
 public class Game {
+
+    private final pgDatabaseConnect pg = new pgDatabaseConnect();
+    private final databaseConnection connection = new databaseConnection(pg);
+
+
+
 
     private final QuestionRepository questionRepository;
     private final PlayerResultRepository playerResultRepository;
@@ -31,7 +38,7 @@ public class Game {
                 PlayerResultRepository playerResultRepository,
                 GameMode gameMode,
                 GameDisplay gameDisplay,
-                GameEndCondition endCondition) {
+                GameEndCondition endCondition) throws SQLException {
 
         this.isPlayer = isPlayer;
         this.questionRepository = questionRepository;
@@ -44,8 +51,10 @@ public class Game {
         if (isPlayer) {
             this.player = playerService.createPlayer(Player.getPlayerName());
         }
+        connection.initiateDataBaseConnection(pg);
+
     }
-    public Game(boolean isPlayer) {
+    public Game(boolean isPlayer) throws SQLException {
         this(isPlayer,
                 new DefaultQuestionRepository(),
                 new DefaultPlayerService(),
@@ -68,7 +77,6 @@ public class Game {
             if(!endCondition.shouldContinue(continueGame, gamesPlayed)){
                 break;
             }
-
         }
         endGame();
     }
@@ -79,10 +87,11 @@ public class Game {
             return gameMode.playGame(questions);
         }
     }
-    public void endGame() {
+    public void endGame() throws SQLException {
 
         String playerResults = playerResultRepository.loadPlayerResults();
         gameDisplay.displayPlayerResults(playerResults);
         gameDisplay.displayGameOver();
+        playerResultRepository.savePlayerResults(pg, player.getName(), player.getScore(),player.getScore()==5?"won":"lost");
     }
 }

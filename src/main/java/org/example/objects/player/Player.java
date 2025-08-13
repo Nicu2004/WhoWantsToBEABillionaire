@@ -12,9 +12,8 @@ public class Player {
     public static String getPlayerName() {
         {
             System.out.print("Please enter your name: ");
-            String name = GameTypes.input.nextLine().trim();
 
-            return name;
+            return GameTypes.input.nextLine().trim();
         }
     }
     public String getName() {
