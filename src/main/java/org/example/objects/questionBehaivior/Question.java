@@ -44,6 +44,29 @@ public class Question
     {
         return correctAnswer;
     }
+    public String getFirstAnswer()
+    {
+        return answers.getFirst();
+    }
+    public String getSecondAnswer()
+    {
+        return answers.get(1);
+    }
+    public String getThirdAnswer()
+    {
+        return answers.getLast();
+    }
+    public void setFirstAnswer(String firstAnswer) {
+        answers.set(0, firstAnswer);
+    }
+
+    public void setSecondAnswer(String secondAnswer) {
+        answers.set(1, secondAnswer);
+    }
+
+    public void setThirdAnswer(String thirdAnswer) {
+        answers.set(answers.size() - 1, thirdAnswer);
+    }
     public void setCorrectAnswer(int correctAnswer)
     {
         this.correctAnswer = correctAnswer;

@@ -3,12 +3,13 @@ package org.example.objects.player;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class PlayerResultLoader {
     
-    public static HashMap<String, PlayerResults> loadPlayerResults(String filename)  {
+    public static String loadPlayerResults(String filename)  {
         HashMap<String, PlayerResults> map = new HashMap<>();
         try {
             List<String> lines = Files.readAllLines(Paths.get(filename));
@@ -24,7 +25,7 @@ public class PlayerResultLoader {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        return map;
+        return Arrays.toString(map.keySet().toArray());
     }
 
 }

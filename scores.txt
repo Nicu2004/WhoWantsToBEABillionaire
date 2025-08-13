@@ -3,3 +3,5 @@ Nicu,0,Lost
 Nicu,1,Lost 
 niXU,3,Lost 
 Nicu,5,Won
+Nicu,0,Lost 
+Nicu,3,Lost 

@@ -14,7 +14,7 @@ public class FilePlayerResultRepository implements PlayerResultRepository {
     }
 
     @Override
-    public HashMap<String, PlayerResults> loadPlayerResults() {
+    public String loadPlayerResults() {
         // Use your existing PlayerResultLoader
         return PlayerResultLoader.loadPlayerResults(fileName);
     }

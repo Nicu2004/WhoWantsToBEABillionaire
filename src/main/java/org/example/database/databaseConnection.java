@@ -1,29 +1,42 @@
 package org.example.database;
-import java.sql.*;
-import java.util.Properties;
+
+import org.example.dbIMplemenations.pgDatabaseConnect;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
+
 
 public class databaseConnection {
 
+    private static pgDatabaseConnect pg;
 
-    public static void main(String[] args) throws SQLException {
-
-        String url = "jdbc:postgresql://localhost/test";
-        Properties props = new Properties();
-        props.setProperty("user", "postgres");
-        props.setProperty("password", "admin");
-        props.setProperty("ssl", "false");
-        Connection conn = DriverManager.getConnection(url, props);
-        System.out.println("Connected to database successfully "+conn.toString());
-        Statement st = conn.createStatement();
-        boolean rs = st.execute("" +
-                "CREATE TABLE IF NOT EXISTS " +
-                "questions " +
-                "(name varchar(30), " +
-                "last_name varchar(30), " +
-                "years INT) " +
-                "");
-        System.out.println("Table created successfully "+rs);
-
-
+    public databaseConnection(pgDatabaseConnect pg)
+    {
+        this.pg =pg;
     }
+
+    public void initiateDataBaseConnection(pgDatabaseConnect pg) throws SQLException {
+
+        pg.connect();
+        String sql = "CREATE TABLE PLAYERS(id SERIAL PRIMARY KEY, name VARCHAR(255), score INT, result varchar(3), playDate varchar(30))";
+        String sql2 ="DROP TABLE IF EXISTS PLAYERS";
+        Statement st = pg.getConnection().createStatement();
+        st.execute(sql2);
+        if(st.execute(sql))
+        {
+            System.out.println("Table PLAYERS has been created");
+        }
+        else
+            System.out.println("Table PLAYERS could not be created");
+
+
+        Calendar cal = Calendar.getInstance();
+        System.out.println(cal.getTime());
+    }
+
+    public static pgDatabaseConnect getConn() {
+        return pg;
+    }
+
 }

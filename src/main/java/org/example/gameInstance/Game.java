@@ -10,6 +10,8 @@ import org.example.objects.player.Player;
 import org.example.objects.player.PlayerResults;
 import org.example.objects.questionBehaivior.Question;
 import org.example.objects.questionBehaivior.QuestionHandler;
+
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,7 +56,7 @@ public class Game {
     }
 
 
-    public void startGame(){
+    public void startGame() throws SQLException {
 
         gameDisplay.displayWelcomeMessage(isPlayer, player);
 
@@ -79,7 +81,7 @@ public class Game {
     }
     public void endGame() {
 
-        HashMap<String, PlayerResults> playerResults = playerResultRepository.loadPlayerResults();
+        String playerResults = playerResultRepository.loadPlayerResults();
         gameDisplay.displayPlayerResults(playerResults);
         gameDisplay.displayGameOver();
     }
