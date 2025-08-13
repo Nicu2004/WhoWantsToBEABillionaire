@@ -54,7 +54,11 @@ public class Question
     }
     public String getThirdAnswer()
     {
-        return answers.getLast();
+        return answers.get(2);
+    }
+    public String getFourthAnswer()
+    {
+        return answers.get(3);
     }
     public void setFirstAnswer(String firstAnswer) {
         answers.set(0, firstAnswer);

@@ -4,6 +4,8 @@ import org.example.gameInstance.Game;
 import org.example.dbIMplemenations.pgDatabaseConnect;
 import org.example.database.databaseConnection;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Stack;
 
 
 public class Main {
@@ -12,6 +14,8 @@ public class Main {
 
         pgDatabaseConnect pg = new pgDatabaseConnect();
         databaseConnection con = new databaseConnection(pg);
+
+
         con.initiateDataBaseConnection(pg);
          boolean player = true;
 
