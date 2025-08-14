@@ -1,8 +1,7 @@
 package org.example.implementations;
 
-import org.example.dbIMplemenations.pgDatabaseConnect;
+import org.example.database.dbIMplemenations.pgDatabaseConnect;
 import org.example.interfaces.PlayerResultRepository;
-import org.example.objects.player.Player;
 import org.example.objects.player.PlayerResultLoader;
 
 import java.sql.PreparedStatement;

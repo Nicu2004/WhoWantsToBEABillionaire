@@ -12,11 +12,14 @@ public class QuestionHandler {
 
         public QuestionHandler(Scanner inputReader)
         {
-
             this.inputReader = inputReader;
         }
         public boolean checkAnswer(Question q, boolean isPlayer) {
-        Printer.showQuestion(q);
+        if(isPlayer) {
+            Printer.showQuestion(q);
+        }
+        else
+            Printer.interractiveMessageForUser(q);
         System.out.print("Your choice: ");
         return answerSwitch(q, isPlayer);
     }

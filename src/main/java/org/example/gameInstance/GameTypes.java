@@ -23,8 +23,7 @@ public class GameTypes {
     public boolean userGame(List<Question> questions) {
 
         Collections.shuffle(questions);
-        Printer.interractiveMessageForUser();
-        return questionEngine.iterateQuestion(questions);
+        return questionEngine.iterateQuestion(questions, false);
     }
 
     public boolean playerGame(List<Question> questions, Player player) {

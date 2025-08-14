@@ -1,7 +1,6 @@
-package org.example.dbIMplemenations;
+package org.example.database.dbIMplemenations;
 
 import org.example.database.dbINterface.databaseConnect;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class pgDatabaseConnect implements databaseConnect {
         props.setProperty("ssl", "false");
         Connection conn = DriverManager.getConnection(url, props);
         System.out.println("Connected to database successfully " + conn.toString());
-        this.connection = conn; // Fixed this line
+        this.connection = conn;
     }
 
     public Connection getConnection() throws SQLException {

@@ -1,7 +1,6 @@
 package org.example.interfaces;
 
-import org.example.dbIMplemenations.pgDatabaseConnect;
-import org.example.objects.player.Player;
+import org.example.database.dbIMplemenations.pgDatabaseConnect;
 
 import java.sql.SQLException;
 

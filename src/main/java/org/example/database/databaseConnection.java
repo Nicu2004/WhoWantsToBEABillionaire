@@ -1,10 +1,7 @@
 package org.example.database;
 
-import org.example.dbIMplemenations.pgDatabaseConnect;
+import org.example.database.dbIMplemenations.pgDatabaseConnect;
 import java.sql.SQLException;
-import org.example.interfaces.*;
-
-
 
 
 public class databaseConnection {
@@ -18,37 +15,15 @@ public class databaseConnection {
 
     public void initiateDataBaseConnection(pgDatabaseConnect pg) throws SQLException {
 
+       if(pg==null)
+           throw new SQLException("pgDatabaseConnect is null");
         pg.connect();
-//        Statement st = pg.getConnection().createStatement();
-//        String sql = "INSERT INTO questions(question_order, " +
-//                "question, " +
-//                "ans1, " +
-//                "ans2, " +
-//                "ans3, " +
-//                "ans4, " +
-//                "corect_answer) VALUES(?, ?, ?, ?, ?, ?, ?)";
-//        PreparedStatement pst = pg.getConnection().prepareStatement(sql);
-//        List<Question> questions;
-//        DefaultQuestionRepository questionRepository = new DefaultQuestionRepository();
-//        questions = questionRepository.loadQuestions();
-//        for(var q: questions)
-//        {
-//            pst.setInt(1, q.getQuestionId());
-//            pst.setString(2, q.getQuestion());
-//            pst.setString(3, q.getFirstAnswer());
-//            pst.setString(4,q.getSecondAnswer());
-//            pst.setString(5, q.getThirdAnswer());
-//            pst.setString(6,q.getFourthAnswer());
-//            pst.setInt(7, q.getCorrectAnswer());
-//            pst.executeUpdate();
-//        }
-//
-//
-//        Calendar cal = Calendar.getInstance();
-//        System.out.println(cal.getTime());
+        System.out.println("Connected to database successfully");
     }
-
     public static pgDatabaseConnect getConn() {
+
+        if(pg==null)
+            throw new IllegalStateException("Database vonnection not initailized");
         return pg;
     }
 

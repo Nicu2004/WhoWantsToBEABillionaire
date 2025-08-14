@@ -1,6 +1,6 @@
 package org.example.gameInstance;
 import org.example.database.databaseConnection;
-import org.example.dbIMplemenations.pgDatabaseConnect;
+import org.example.database.dbIMplemenations.pgDatabaseConnect;
 import org.example.implementations.ConsoleGameDisplay;
 import org.example.implementations.StandardGameMode;
 import org.example.implementations.ContinousGameEndCondition;
@@ -13,16 +13,12 @@ import org.example.objects.questionBehaivior.Question;
 import org.example.objects.questionBehaivior.QuestionHandler;
 import java.sql.SQLException;
 
-import java.sql.Statement;
 import java.util.List;
 
 public class Game {
 
     private final pgDatabaseConnect pg = new pgDatabaseConnect();
     private final databaseConnection connection = new databaseConnection(pg);
-
-
-
 
     private final QuestionRepository questionRepository;
     private final PlayerResultRepository playerResultRepository;
@@ -63,8 +59,6 @@ public class Game {
                 new ConsoleGameDisplay(),
                 new ContinousGameEndCondition());
     }
-
-
     public void startGame() throws SQLException {
 
         gameDisplay.displayWelcomeMessage(isPlayer, player);
@@ -92,6 +86,8 @@ public class Game {
         String playerResults = playerResultRepository.loadPlayerResults();
         gameDisplay.displayPlayerResults(playerResults);
         gameDisplay.displayGameOver();
-        playerResultRepository.savePlayerResults(pg, player.getName(), player.getScore(),player.getScore()==5?"won":"lost");
+        if(isPlayer) {
+            playerResultRepository.savePlayerResults(pg, player.getName(), player.getScore(),player.getScore()==5?"won":"lost");
+        }
     }
 }
