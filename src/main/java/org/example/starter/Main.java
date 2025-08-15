@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-         boolean player = true;
+         boolean player = false;
 
          Game gameUser = new Game(player);
          gameUser.startGame();
