@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class pgDatabaseConnect implements databaseConnect {
+public final class pgDatabaseConnect implements databaseConnect {
     private Connection connection;
 
     @Override

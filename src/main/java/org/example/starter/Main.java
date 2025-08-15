@@ -1,5 +1,5 @@
 package org.example.starter;
-import org.example.gameInstance.Game;
+import org.example.game.gameInstance.Game;
 import java.sql.SQLException;
 
 public class Main {

@@ -23,7 +23,7 @@ public class databaseConnection {
     public static pgDatabaseConnect getConn() {
 
         if(pg==null)
-            throw new IllegalStateException("Database vonnection not initailized");
+            throw new IllegalStateException("Database connection not initailized");
         return pg;
     }
 

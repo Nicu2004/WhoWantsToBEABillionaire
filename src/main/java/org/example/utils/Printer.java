@@ -1,7 +1,7 @@
 package org.example.utils;
 
-import org.example.objects.questionBehaivior.Question;
-import org.example.objects.player.Player;
+import org.example.questions.questionBehaivior.Question;
+import org.example.player.player.Player;
 
 
 public class Printer {
