@@ -24,3 +24,6 @@ Valy,0,Lost
 Valy,0,Lost 
 Nicu,5,Won
 Dennis,5,Won
+Valy,5,Won
+Nicu,5,Won
+Piron,1,Lost 

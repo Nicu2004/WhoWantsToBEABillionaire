@@ -37,8 +37,6 @@ public class QuestionEngine {
         int size = 0;
         for(Question q: questionList)
         {
-            System.out.println(size);
-
             if(questionHandler.checkAnswer(q, isPlayer))
             {
                 System.out.println("Correct!");

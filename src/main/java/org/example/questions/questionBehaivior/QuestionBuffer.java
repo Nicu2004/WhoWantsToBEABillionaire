@@ -1,6 +1,8 @@
 package org.example.questions.questionBehaivior;
 
+import org.example.database.PgStatemantClass;
 import org.example.utils.filework.LoadFile;
+import org.postgresql.jdbc.PgStatement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static org.example.database.databaseConnection.getConn;
 
 public class QuestionBuffer {
 
@@ -31,10 +31,11 @@ public class QuestionBuffer {
 
     public  List<Question> questionReader(Scanner reader) throws SQLException {
         List<Question> questions = new ArrayList<>();
-        var conn = getConn();
+       Statement statement = PgStatemantClass.createStmt();
+
         String sql =  "SELECT question_order, question, ans1, ans2, ans3, ans4, corect_answer FROM questions";
-        try(Statement st = conn.getConnection().createStatement();
-        ResultSet rs = st.executeQuery(sql)){
+        try(
+        ResultSet rs = statement.executeQuery(sql)){
             while (rs.next()) {
                 int id = rs.getInt("question_order");
                 String questionText = rs.getString("question");

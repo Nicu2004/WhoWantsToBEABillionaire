@@ -1,11 +1,10 @@
 package org.example.player.interfaces;
 
-import org.example.database.dbIMplemenations.pgDatabaseConnect;
-
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public interface PlayerResultRepository {
     String loadPlayerResults();
-    void savePlayerResults(pgDatabaseConnect pg, String name, int score, String result) throws SQLException;
+    void savePlayerResults(Statement statement,String name, int score, String result) throws SQLException;
 }
