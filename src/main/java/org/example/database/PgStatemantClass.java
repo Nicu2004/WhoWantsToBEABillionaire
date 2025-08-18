@@ -9,6 +9,7 @@ public class PgStatemantClass {
     public static Statement createStmt() throws SQLException{
         Connection connection = DefaultDataBaseConnection.getConn();
         return connection.createStatement();
+        //this is a comment
     }
 
 }
