@@ -1,0 +1,20 @@
+.answer-button {
+    -fx-background-color: linear-gradient(to bottom, #ff4e50, #fc913a);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6,0,0,2);
+}
+
+.answer-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff6a6a, #ffb347);
+}
+
+.answer-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #d64541, #e67e22);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8,0,0,3);
+}
