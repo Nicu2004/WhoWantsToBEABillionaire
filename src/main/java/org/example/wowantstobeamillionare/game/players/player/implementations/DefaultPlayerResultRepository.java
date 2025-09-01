@@ -1,6 +1,6 @@
-package org.example.wowantstobeamillionare.game.controllers.player.implementations;
+package org.example.wowantstobeamillionare.game.players.player.implementations;
 
-import org.example.wowantstobeamillionare.game.controllers.player.interfaces.PlayerResultRepository;
+import org.example.wowantstobeamillionare.game.players.player.interfaces.PlayerResultRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

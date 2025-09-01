@@ -1,6 +1,5 @@
-package org.example.wowantstobeamillionare.game.controllers.questionBehaivior;
+package org.example.wowantstobeamillionare.game.questions.questionBehaivior;
 
-import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 public class QuestionHandler {
 
     public static boolean answerSwitch(Question q, int selectedChoice) {

@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.player.playerBehavior;
+package org.example.wowantstobeamillionare.game.players.player.playerBehavior;
 
 import javafx.scene.control.Alert;
 

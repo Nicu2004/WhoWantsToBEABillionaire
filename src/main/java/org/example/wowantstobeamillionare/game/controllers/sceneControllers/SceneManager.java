@@ -1,12 +1,14 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.sceneManager;
+package org.example.wowantstobeamillionare.game.controllers.sceneControllers;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.Player;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerGameScene;
+import javafx.util.Duration;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
 public class SceneManager{
 
@@ -18,22 +20,28 @@ public class SceneManager{
     public static void switchTo(String fxmlFile, Player player)
     {
         try {
+            primaryStage.setFullScreen(true);
+            primaryStage.setResizable(false);
+            primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/org/example/wowantstobeamillionare/"+fxmlFile));
             System.out.println(fxmlFile);
             Parent root = loader.load();
 
             Object controller = loader.getController();
 
-            if(controller instanceof PlayerGameScene)
+            if(controller instanceof GameEngineSceneController)
             {
-                ((PlayerGameScene)controller).setPlayer(player);
+                ((GameEngineSceneController)controller).setPlayer(player);
             }
-            else if(controller instanceof PlayerFinalResults)
+            else if(controller instanceof FinalResultsController)
             {
-                ((PlayerFinalResults)controller).setPlayerFinalResults(player);
+                ((FinalResultsController)controller).setPlayerFinalResults(player);
             }
             Scene scene = new Scene(root, 900, 600);
             primaryStage.setScene(scene);
+            primaryStage.setFullScreen(true);
+            primaryStage.setResizable(false);
+            primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         }catch (Exception e)
             {
             e.printStackTrace();
@@ -43,15 +51,31 @@ public class SceneManager{
     }
     public static void switchTo(String fxmlFile)
     {
+
         try {
+            primaryStage.setFullScreen(true);
+            primaryStage.setResizable(false);
+            primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/org/example/wowantstobeamillionare/"+fxmlFile));
             System.out.println(fxmlFile);
             Parent root = loader.load();
             Scene scene = new Scene(root, 900, 600);
             primaryStage.setScene(scene);
+            primaryStage.setFullScreen(true);
+            primaryStage.setResizable(false);
+            primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         }catch (Exception e)
         {
             e.printStackTrace();
+        }
+    }
+    public static Stage getPrimaryStage()
+    {
+        if(primaryStage==null)
+            return primaryStage;
+        else {
+            System.out.println("Stage is null");
+            return null;
         }
     }
 }

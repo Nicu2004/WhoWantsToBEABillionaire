@@ -1,17 +1,12 @@
-package org.example.wowantstobeamillionare;
+package org.example.wowantstobeamillionare.game.starter;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.example.wowantstobeamillionare.game.controllers.sceneManager.SceneManager;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.SceneManager;
 
-
-import java.io.IOException;
-
-import static com.almasb.fxgl.dsl.FXGLForKtKt.random;
-
-public class HelloApplication extends Application {
+public class ApplicationStart extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         SceneManager.setPrimaryStage(stage);
         stage.setTitle("Who Wants to be a Millionaire");
         SceneManager.switchTo("welcome.fxml");
@@ -20,7 +15,7 @@ public class HelloApplication extends Application {
 
     public static class Launcher {
         public static void main(String[] args) {
-            launch(HelloApplication.class, args);
+            launch(ApplicationStart.class, args);
         }
     }
 }

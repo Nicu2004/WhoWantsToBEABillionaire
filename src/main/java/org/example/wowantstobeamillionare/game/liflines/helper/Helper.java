@@ -1,10 +1,10 @@
-package org.example.wowantstobeamillionare.game.inGameModes;
+package org.example.wowantstobeamillionare.game.liflines.helper;
 
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerGameScene;
-import org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.implementations.AskAudience;
-import org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.implementations.CallFriend;
-import org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.implementations.FiftyFifty;
-import org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.interfaces.LifeLine;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.GameEngineSceneController;
+import org.example.wowantstobeamillionare.game.liflines.implementations.AskAudience;
+import org.example.wowantstobeamillionare.game.liflines.implementations.CallFriend;
+import org.example.wowantstobeamillionare.game.liflines.implementations.FiftyFifty;
+import org.example.wowantstobeamillionare.game.liflines.interfaces.LifeLine;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,12 +20,12 @@ public class Helper {
         lifeLines.put("fiftyFifty", new FiftyFifty());
     }
 
-    public static void useLifeLIne(String name, Question question, PlayerGameScene playerGameScene)
+    public static void useLifeLIne(String name, Question question, GameEngineSceneController gameEngineSceneController)
     {
         LifeLine l = lifeLines.get(name);
         if(l != null)
         {
-            l.execute(question, playerGameScene);
+            l.execute(question, gameEngineSceneController);
         }else {
             System.out.println("The life line " + name + " does not exist.");
         }

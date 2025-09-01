@@ -1,11 +1,11 @@
-package org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.interfaces;
+package org.example.wowantstobeamillionare.game.liflines.interfaces;
 
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerGameScene;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 
 public interface LifeLine {
 
-    void execute(Question question, PlayerGameScene  playerGameScene);
+    void execute(Question question, GameEngineSceneController gameEngineSceneController);
 }
 
 

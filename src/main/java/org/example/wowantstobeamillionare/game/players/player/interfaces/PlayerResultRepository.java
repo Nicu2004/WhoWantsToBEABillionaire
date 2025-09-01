@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.player.interfaces;
+package org.example.wowantstobeamillionare.game.players.player.interfaces;
 
 import java.sql.SQLException;
 import java.sql.Statement;

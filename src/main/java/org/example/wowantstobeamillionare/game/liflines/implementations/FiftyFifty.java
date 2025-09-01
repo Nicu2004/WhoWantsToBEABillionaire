@@ -1,6 +1,6 @@
-package org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.implementations;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerGameScene;
-import org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.interfaces.LifeLine;
+package org.example.wowantstobeamillionare.game.liflines.implementations;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.GameEngineSceneController;
+import org.example.wowantstobeamillionare.game.liflines.interfaces.LifeLine;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 
 import java.util.HashSet;
@@ -11,11 +11,11 @@ import java.util.Set;
 public class FiftyFifty implements LifeLine {
 
     Question question;
-    PlayerGameScene playerGameScene;
+    GameEngineSceneController gameEngineSceneController;
     public FiftyFifty() {}
 
     @Override
-    public void execute(Question question, PlayerGameScene playerGameScene) {
+    public void execute(Question question, GameEngineSceneController gameEngineSceneController) {
         int numberToBeDesabled = 0;
         Set<Integer> disabledButtons = new HashSet<>();
         Random random = new Random();
@@ -29,19 +29,19 @@ public class FiftyFifty implements LifeLine {
             }
 
             if(randomNumber == 0) {
-                playerGameScene.disableBtn1();
+                gameEngineSceneController.disableBtn1();
                 disabledButtons.add(0);
             }
             else if(randomNumber == 1) {
-                playerGameScene.disableBtn2();
+                gameEngineSceneController.disableBtn2();
                 disabledButtons.add(1);
             }
             else if(randomNumber == 2) {
-                playerGameScene.disableBtn3();
+                gameEngineSceneController.disableBtn3();
                 disabledButtons.add(2);
             }
             else if(randomNumber == 3) {
-                playerGameScene.disableBtn4();
+                gameEngineSceneController.disableBtn4();
                 disabledButtons.add(3);
             }
 

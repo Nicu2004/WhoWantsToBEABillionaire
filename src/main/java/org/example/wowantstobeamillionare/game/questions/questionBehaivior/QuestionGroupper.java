@@ -1,21 +1,19 @@
 package org.example.wowantstobeamillionare.game.questions.questionBehaivior;
 
-import org.example.wowantstobeamillionare.controllers.questionBehaivior.QuestionHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import org.example.wowantstobeamillionare.controllers.player.implementations.DefaultPlayerService;
+import org.example.wowantstobeamillionare.game.players.player.implementations.DefaultPlayerService;
 
-public class QuestionEngine {
+public class QuestionGroupper {
+
     private final DefaultPlayerService playerService;
     private final QuestionHandler questionHandler;
-    public QuestionEngine(QuestionHandler questionHandler) {
+    public QuestionGroupper(QuestionHandler questionHandler) {
         this.questionHandler = questionHandler;
         this.playerService = new DefaultPlayerService();
     }
     // for players
-
     public ArrayList<Question> groupQuestions(List<Question> questionList) {
         Random random = new Random();
         ArrayList<Question> groupedQuestions = new ArrayList<>();

@@ -1,7 +1,7 @@
-package org.example.wowantstobeamillionare.game.controllers.player.implementations;
+package org.example.wowantstobeamillionare.game.players.player.implementations;
 
-import org.example.wowantstobeamillionare.game.controllers.player.interfaces.PlayerService;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.Player;
+import org.example.wowantstobeamillionare.game.players.player.interfaces.PlayerService;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
 public class DefaultPlayerService implements PlayerService {
 

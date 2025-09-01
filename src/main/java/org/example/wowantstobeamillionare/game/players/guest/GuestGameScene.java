@@ -1,14 +1,21 @@
-package org.example.wowantstobeamillionare.game.controllers.guest;
+package org.example.wowantstobeamillionare.game.players.guest;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import org.example.wowantstobeamillionare.game.controllers.questionBehaivior.QuestionHandler;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.example.wowantstobeamillionare.game.questions.questionBehaivior.QuestionHandler;
 import org.example.wowantstobeamillionare.game.questions.implementations.DefaultQuestionRepository;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,8 +37,10 @@ public class GuestGameScene {
     private Button ans4;
     private int currentIndex = 0;
     private Question currentQuestion;
-    private DefaultQuestionRepository defaultQuestionRepository;
+    private final DefaultQuestionRepository defaultQuestionRepository;
     private List<Question> questions;
+
+    ActionEvent actionEvent;
     QuestionHandler questionHandler;
     public GuestGameScene() {
 
@@ -44,7 +53,7 @@ public class GuestGameScene {
         Collections.shuffle(questions);
         showCurrentQuestion();
     }
-    private void showCurrentQuestion() {
+    private void showCurrentQuestion() throws SQLException {
 
         if(currentIndex==-1||currentIndex==questions.size())
         {
@@ -53,6 +62,13 @@ public class GuestGameScene {
             ans2.setDisable(true);
             ans3.setDisable(true);
             ans4.setDisable(true);
+            Platform.runLater(() -> {
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+                    Stage stage =  (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                    stage.close();
+                }));
+                timeline.play();
+            });
             return;
         }
            currentQuestion = questions.get(currentIndex);
@@ -64,7 +80,9 @@ public class GuestGameScene {
            ans4.setText(currentQuestion.getFourthAnswer());
     }
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws SQLException {
+
+        actionEvent = event;
         Button source = (Button) event.getSource();
         int selectedIndex =0;
         if(Objects.equals(source.getId(), "ans2"))
@@ -88,7 +106,7 @@ public class GuestGameScene {
         nextQuestion();
     }
     @FXML
-    private void nextQuestion() {
+    private void nextQuestion() throws SQLException {
         if(currentIndex!=-1) {
             currentIndex++;
         }

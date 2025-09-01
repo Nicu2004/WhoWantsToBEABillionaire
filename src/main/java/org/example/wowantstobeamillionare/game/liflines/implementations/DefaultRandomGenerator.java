@@ -1,6 +1,6 @@
-package org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.implementations;
+package org.example.wowantstobeamillionare.game.liflines.implementations;
 
-import org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.interfaces.RandomGenerator;
+import org.example.wowantstobeamillionare.game.liflines.interfaces.RandomGenerator;
 
 import java.util.Random;
 

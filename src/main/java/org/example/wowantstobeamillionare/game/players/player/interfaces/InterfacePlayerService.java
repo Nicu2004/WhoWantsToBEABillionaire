@@ -1,6 +1,6 @@
-package org.example.wowantstobeamillionare.game.controllers.player.interfaces;
+package org.example.wowantstobeamillionare.game.players.player.interfaces;
 
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.Player;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
 public interface InterfacePlayerService {
     Player createPlayer(String name);

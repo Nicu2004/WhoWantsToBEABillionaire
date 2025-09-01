@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.inGameModes.Modes.liflines.interfaces;
+package org.example.wowantstobeamillionare.game.liflines.interfaces;
 
 import java.util.Random;
 

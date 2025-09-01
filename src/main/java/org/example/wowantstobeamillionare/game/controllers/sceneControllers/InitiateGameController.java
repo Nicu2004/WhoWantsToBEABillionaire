@@ -1,14 +1,13 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.sceneManager;
+package org.example.wowantstobeamillionare.game.controllers.sceneControllers;
 
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.Player;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerGameScene;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerNameValidationService;
-import org.example.wowantstobeamillionare.game.controllers.player.playerBehavior.PlayerService;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.PlayerNameValidationService;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.PlayerService;
 
-public class PlayerInitiateGame {
+public class InitiateGameController {
 
     private Player player;
     private PlayerService playerService;
@@ -21,7 +20,7 @@ public class PlayerInitiateGame {
     public String username;
 
 
-    public PlayerInitiateGame()
+    public InitiateGameController()
     {
         playerNameValidationService = new PlayerNameValidationService();
         playerService = new PlayerService();

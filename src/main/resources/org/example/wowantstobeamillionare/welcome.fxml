@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: #1E1E6F"
-      fx:controller="org.example.wowantstobeamillionare.controllers.WelcomeController">
+      fx:controller="org.example.wowantstobeamillionare.game.controllers.sceneControllers.WelcomeSceneController" stylesheets="@styles.css">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <!--    This is the welcome scene, when the user starts the game this scene will appear-->
     <GridPane fx:id="welcomeScene" alignment="CENTER"
-              style="-fx-border-color: black; -fx-border-width: 2px;" hgap="10" vgap="15" >
+              hgap="10" vgap="15" >
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>
@@ -27,8 +27,8 @@
                style="-fx-font-size: 20; -fx-text-fill: white"/>
         <HBox fx:id="welcomeButtons" alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2"
               GridPane.halignment="CENTER" spacing="20">
-            <Button text="GuestMode" fx:id="guestMode" onAction="#onGuestModeClicked"/>
-            <Button text="PlayerMode" fx:id="playerMode" onAction="#onPlayerModeClicked"/>
+            <Button text="GuestMode" fx:id="guestMode" onAction="#onGuestModeClicked" styleClass="button-86"/>
+            <Button text="PlayerMode" fx:id="playerMode" onAction="#onPlayerModeClicked" styleClass="button-86"/>
         </HBox>
     </GridPane>
 </VBox>

@@ -9,14 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.sceneManager.SceneManager;
 
 import java.sql.SQLException;
 import java.util.Objects;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.random;
 
-public class WelcomeController {
+public class WelcomeSceneController {
 
     @FXML
     public GridPane welcomeScene;
@@ -33,6 +32,7 @@ public class WelcomeController {
     private boolean isPlayer;
     private Group animatedBackground;
     public void initialize() {
+
 
         welcomeText.setText("Welcome to who wants to be a millionaire!");
         // Use absolute path starting with "/"

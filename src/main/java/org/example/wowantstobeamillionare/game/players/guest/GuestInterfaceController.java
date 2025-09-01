@@ -1,10 +1,10 @@
-package org.example.wowantstobeamillionare.game.controllers.guest;
+package org.example.wowantstobeamillionare.game.players.guest;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.sceneManager.SceneManager;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.SceneManager;
 
 public class GuestInterfaceController {
 

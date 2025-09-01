@@ -7,7 +7,7 @@ public class Question
     private int questionId;
     private String question;
     private List<String> answers;
-    private int correctAnswer;
+    private final int correctAnswer;
 
     public Question(int questionId, String question, List<String> answers, int correctAnswer)
     {
@@ -15,14 +15,6 @@ public class Question
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
-    }
-    public int getQuestionId()
-    {
-        return questionId;
-    }
-    public void setQuestionId(int questionId)
-    {
-        this.questionId = questionId;
     }
     public String getQuestion()
     {
@@ -59,25 +51,6 @@ public class Question
     public String getFourthAnswer()
     {
         return answers.get(3);
-    }
-    public void setFirstAnswer(String firstAnswer) {
-        answers.set(0, firstAnswer);
-    }
-
-    public void setSecondAnswer(String secondAnswer) {
-        answers.set(1, secondAnswer);
-    }
-
-    public void setThirdAnswer(String thirdAnswer) {
-        answers.set(answers.size() - 1, thirdAnswer);
-    }
-    public void setCorrectAnswer(int correctAnswer)
-    {
-        this.correctAnswer = correctAnswer;
-    }
-    public boolean isCorrect(int answerIndex)
-    {
-        return answerIndex == correctAnswer;
     }
 }
 

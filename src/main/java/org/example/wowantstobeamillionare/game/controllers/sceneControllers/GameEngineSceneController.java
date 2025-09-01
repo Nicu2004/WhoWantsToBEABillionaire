@@ -1,5 +1,8 @@
-package org.example.wowantstobeamillionare.game.controllers.player.playerBehavior;
+package org.example.wowantstobeamillionare.game.controllers.sceneControllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,8 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import org.example.wowantstobeamillionare.game.controllers.questionBehaivior.QuestionHandler;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.sceneManager.SceneManager;
+import javafx.util.Duration;
+import org.example.wowantstobeamillionare.game.addon.AnimationFaderButton;
+import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
+import org.example.wowantstobeamillionare.game.questions.questionBehaivior.QuestionHandler;
 import org.example.wowantstobeamillionare.game.liflines.helper.Helper;
 import org.example.wowantstobeamillionare.game.questions.implementations.DefaultQuestionRepository;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
@@ -21,7 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class PlayerGameScene {
+public class GameEngineSceneController {
     @FXML
     public Text status;
     @FXML
@@ -52,7 +57,7 @@ public class PlayerGameScene {
     private List<Question> grouppedQuestions;
     private Player player;
 
-    public PlayerGameScene() {
+    public GameEngineSceneController() {
 
         defaultQuestionRepository = new DefaultQuestionRepository();
         questions = new ArrayList<>();
@@ -78,7 +83,13 @@ public class PlayerGameScene {
             return;
         }
         if(currentIndex == -1) {
-            SceneManager.switchTo("lostStage.fxml", player);
+
+            Platform.runLater(() -> {
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+                    SceneManager.switchTo("lostStage.fxml", player);
+                }));
+                timeline.play();
+            });
             return;
         }
         if(currentIndex<grouppedQuestions.size()) {
@@ -110,15 +121,27 @@ public class PlayerGameScene {
         }
         else
         {
+            status.setText("Incorrect");
+            status.setFill(Color.RED);
+            status.setFont(Font.font("System", FontWeight.BOLD, 20));
             currentIndex = -1;
         }
+        disableBtn1();
+        disableBtn2();
+        disableBtn3();
+        disableBtn4();
         nextQuestion();
     }
     @FXML
     public void nextQuestion() {
-        if(currentIndex != -1) {
-            currentIndex++;
-        }
+        Platform.runLater(() -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+                status.setText("");
+                currentIndex++;
+                showCurrentQuestion();
+            }));
+            timeline.play();
+        });
         showCurrentQuestion();
     }
 
@@ -133,7 +156,6 @@ public class PlayerGameScene {
         Button source = (Button) actionEvent.getSource();
         Helper.useLifeLIne(source.getId(), currentQuestion, this);
         AnimationFaderButton.fadeButtonAnnimation(source);
-
     }
     public void disableBtn1() {
         ans1.setDisable(true);

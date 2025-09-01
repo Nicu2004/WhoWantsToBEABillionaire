@@ -19,10 +19,11 @@ public class DefaultDataBaseConnection{
             connection = DriverManager.getConnection(url, props);
         }catch (SQLException sqlException)
         {
+            System.out.println("connection not succesful");
             System.out.println(sqlException.getMessage());
         }
     }
-    public static DefaultDataBaseConnection getInstance()
+    public static void getInstance()
     {
         if(instance==null) {
             synchronized (DefaultDataBaseConnection.class) {
@@ -31,7 +32,6 @@ public class DefaultDataBaseConnection{
                 }
             }
         }
-        return instance;
     }
     public static Connection getConn() {
         DefaultDataBaseConnection.getInstance();

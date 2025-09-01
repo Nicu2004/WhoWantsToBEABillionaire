@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.liflines.addon;
+package org.example.wowantstobeamillionare.game.addon;
 
 import java.util.Random;
 
