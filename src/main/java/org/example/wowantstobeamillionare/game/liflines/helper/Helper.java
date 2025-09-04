@@ -1,6 +1,6 @@
 package org.example.wowantstobeamillionare.game.liflines.helper;
 
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.GameEngineSceneController;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.liflines.implementations.AskAudience;
 import org.example.wowantstobeamillionare.game.liflines.implementations.CallFriend;
 import org.example.wowantstobeamillionare.game.liflines.implementations.FiftyFifty;

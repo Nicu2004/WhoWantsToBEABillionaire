@@ -12,7 +12,6 @@ public class ApplicationStart extends Application {
         SceneManager.switchTo("welcome.fxml");
         stage.show();
     }
-
     public static class Launcher {
         public static void main(String[] args) {
             launch(ApplicationStart.class, args);

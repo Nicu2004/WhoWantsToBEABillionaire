@@ -1,13 +1,13 @@
 package org.example.wowantstobeamillionare.game.controllers.sceneControllers;
 
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.FinalResultsController;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
 public class SceneManager{

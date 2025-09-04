@@ -1,5 +1,5 @@
 package org.example.wowantstobeamillionare.game.liflines.implementations;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.GameEngineSceneController;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.liflines.interfaces.LifeLine;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 

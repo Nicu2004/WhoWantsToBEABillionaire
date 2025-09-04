@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers;
+package org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,6 +13,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.wowantstobeamillionare.game.addon.AnimationFaderButton;
+import org.example.wowantstobeamillionare.game.controllers.sceneControllers.SceneManager;
 import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.QuestionHandler;
 import org.example.wowantstobeamillionare.game.liflines.helper.Helper;
@@ -95,7 +96,7 @@ public class GameEngineSceneController {
         if(currentIndex<grouppedQuestions.size()) {
             currentQuestion = grouppedQuestions.get(currentIndex);
             questionField.setText(currentQuestion.getQuestion());
-            enableAllButtons();
+            ButtonsBehavior.enableAllButtons(ans1, ans2, ans3, ans4);
             ans1.setText(currentQuestion.getFirstAnswer());
             ans2.setText(currentQuestion.getSecondAnswer());
             ans3.setText(currentQuestion.getThirdAnswer());
@@ -126,10 +127,7 @@ public class GameEngineSceneController {
             status.setFont(Font.font("System", FontWeight.BOLD, 20));
             currentIndex = -1;
         }
-        disableBtn1();
-        disableBtn2();
-        disableBtn3();
-        disableBtn4();
+        ButtonsBehavior.disableAllButtons(ans1, ans2, ans3, ans4);
         nextQuestion();
     }
     @FXML
@@ -145,31 +143,9 @@ public class GameEngineSceneController {
         showCurrentQuestion();
     }
 
-    private void enableAllButtons(){
-        ans1.setDisable(false);
-        ans2.setDisable(false);
-        ans3.setDisable(false);
-        ans4.setDisable(false);
-    }
     public void lifeLineHandler(ActionEvent actionEvent) {
-
         Button source = (Button) actionEvent.getSource();
         Helper.useLifeLIne(source.getId(), currentQuestion, this);
         AnimationFaderButton.fadeButtonAnnimation(source);
-    }
-    public void disableBtn1() {
-        ans1.setDisable(true);
-    }
-
-    public void disableBtn2() {
-        ans2.setDisable(true);
-    }
-
-    public void disableBtn3() {
-        ans3.setDisable(true);
-    }
-
-    public void disableBtn4() {
-        ans4.setDisable(true);
     }
 }
