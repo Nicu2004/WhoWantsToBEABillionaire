@@ -1,5 +1,5 @@
 package org.example.wowantstobeamillionare.game.liflines.implementations;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine.GameEngineSceneController;
+import org.example.wowantstobeamillionare.game.controllers.gameEngine.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.liflines.interfaces.LifeLine;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class FiftyFifty implements LifeLine {
 
-    Question question;
+
     GameEngineSceneController gameEngineSceneController;
     public FiftyFifty() {}
 
@@ -27,24 +27,26 @@ public class FiftyFifty implements LifeLine {
             if (disabledButtons.contains(randomNumber) || randomNumber == question.getCorrectAnswer()) {
                 continue;
             }
-
             if(randomNumber == 0) {
-                gameEngineSceneController.disableBtn1();
+                gameEngineSceneController.disableSpecificButton(1);
+                System.out.println("Button 1 disabled");
                 disabledButtons.add(0);
             }
             else if(randomNumber == 1) {
-                gameEngineSceneController.disableBtn2();
+                gameEngineSceneController.disableSpecificButton(2);
+                System.out.println("Button 2 disabled");
                 disabledButtons.add(1);
             }
             else if(randomNumber == 2) {
-                gameEngineSceneController.disableBtn3();
+                gameEngineSceneController.disableSpecificButton(3);
+                System.out.println("Button 3 disabled");
                 disabledButtons.add(2);
             }
-            else if(randomNumber == 3) {
-                gameEngineSceneController.disableBtn4();
+            else {
+                gameEngineSceneController.disableSpecificButton(4);
+                System.out.println("Button 4 disabled");
                 disabledButtons.add(3);
             }
-
             numberToBeDesabled++;
         }
     }

@@ -2,7 +2,7 @@ package org.example.wowantstobeamillionare.game.starter;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.SceneManager;
+import org.example.wowantstobeamillionare.game.controllers.SceneManager;
 
 public class ApplicationStart extends Application {
     @Override

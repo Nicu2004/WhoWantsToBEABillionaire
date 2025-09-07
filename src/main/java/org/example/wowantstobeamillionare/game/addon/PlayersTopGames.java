@@ -1,5 +1,6 @@
 package org.example.wowantstobeamillionare.game.addon;
 
+import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnection;
 import org.example.wowantstobeamillionare.game.database.PgStatemantClass;
 import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
@@ -20,15 +21,23 @@ public class PlayersTopGames{
         topPlayersClass = new TopPlayersClass();
     }
     private List<Player> loadPlayers() throws SQLException {
-        String sql  = "SELECT * FROM players";
-        try(
-                ResultSet resultSet = statement.executeQuery(sql)){
-            while(resultSet.next()){
-                int score = resultSet.getInt("score");
-                String name = resultSet.getString("name");
-                String state = resultSet.getString("result");
-                players.add(new Player(name,  score, state));
+        if(DefaultDataBaseConnection.getConn()!=null) {
+            String sql  = "SELECT * FROM players";
+            try(
+                    ResultSet resultSet = statement.executeQuery(sql)){
+                while(resultSet.next()){
+                    int score = resultSet.getInt("score");
+                    String name = resultSet.getString("name");
+                    String state = resultSet.getString("result");
+                    players.add(new Player(name,  score, state));
+                }
             }
+
+        }
+        else {
+            players.add(new Player("NULL0",  0, "NULL"));
+            players.add(new Player("NULL1",  0, "NULL"));
+            players.add(new Player("NULL2",  0, "NULL"));
         }
         return players;
     }
@@ -37,7 +46,7 @@ public class PlayersTopGames{
         List<TopPlayersClass> playersTopGames = new ArrayList<>();
         for(Player player : players)
         {
-            if(player.getState().equals("WON"))
+            if(player.getState().equals("WON")||player.getState().equals("NULL"))
             {
                boolean exist = false;
                TopPlayersClass foundPlayer = null;
@@ -59,12 +68,7 @@ public class PlayersTopGames{
             }
         }
         System.out.println("Total Games: "+playersTopGames.size());
-        playersTopGames.sort(new Comparator<TopPlayersClass>() {
-            @Override
-            public int compare(TopPlayersClass o1, TopPlayersClass o2) {
-                return Integer.compare(o2.getTotalGames(), o1.getTotalGames());
-            }
-        });
+        playersTopGames.sort((o1, o2) -> Integer.compare(o2.getTotalGames(), o1.getTotalGames()));
         return playersTopGames;
     }
 

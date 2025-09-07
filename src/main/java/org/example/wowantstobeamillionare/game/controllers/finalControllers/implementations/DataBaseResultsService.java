@@ -1,6 +1,6 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.implementations;
+package org.example.wowantstobeamillionare.game.controllers.finalControllers.implementations;
 
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.interfaces.PlayerResultService;
+import org.example.wowantstobeamillionare.game.controllers.finalControllers.interfaces.PlayerResultService;
 import org.example.wowantstobeamillionare.game.database.PgStatemantClass;
 import org.example.wowantstobeamillionare.game.players.player.implementations.DefaultPlayerResultRepository;
 

@@ -1,7 +1,7 @@
 package org.example.wowantstobeamillionare.game.liflines.implementations;
 
 import javafx.scene.control.Alert;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine.GameEngineSceneController;
+import org.example.wowantstobeamillionare.game.controllers.gameEngine.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.liflines.interfaces.LifeLine;
 import org.example.wowantstobeamillionare.game.questions.questionBehaivior.Question;
 import java.util.Random;

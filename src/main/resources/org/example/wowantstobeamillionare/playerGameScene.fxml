@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine.GameEngineSceneController"
+          fx:controller="org.example.wowantstobeamillionare.game.controllers.gameEngine.GameEngineSceneController"
           style="-fx-background-color: linear-gradient(to bottom, #16213e, #0f3460, #533483);">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

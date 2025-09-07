@@ -1,7 +1,7 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.implementations;
+package org.example.wowantstobeamillionare.game.controllers.finalControllers.implementations;
 
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.classses.TopPlayer;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.interfaces.TopPlayersFormater;
+import org.example.wowantstobeamillionare.game.controllers.finalControllers.classses.TopPlayer;
+import org.example.wowantstobeamillionare.game.controllers.finalControllers.interfaces.TopPlayersFormater;
 
 import java.util.List;
 

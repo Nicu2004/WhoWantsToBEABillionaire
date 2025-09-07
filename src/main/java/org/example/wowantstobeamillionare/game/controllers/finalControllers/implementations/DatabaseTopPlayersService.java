@@ -1,12 +1,11 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.implementations;
+package org.example.wowantstobeamillionare.game.controllers.finalControllers.implementations;
 
 import org.example.wowantstobeamillionare.game.addon.PlayersTopGames;
 import org.example.wowantstobeamillionare.game.addon.TopPlayersClass;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.classses.TopPlayer;
-import org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.interfaces.TopPlayerService;
+import org.example.wowantstobeamillionare.game.controllers.finalControllers.classses.TopPlayer;
+import org.example.wowantstobeamillionare.game.controllers.finalControllers.interfaces.TopPlayerService;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

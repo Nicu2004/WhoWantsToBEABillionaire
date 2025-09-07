@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: #1E1E6F"
-      fx:controller="org.example.wowantstobeamillionare.game.controllers.sceneControllers.WelcomeSceneController" stylesheets="@styles.css">
+      fx:controller="org.example.wowantstobeamillionare.game.controllers.WelcomeSceneController" stylesheets="@styles.css">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>

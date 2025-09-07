@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.classses;
+package org.example.wowantstobeamillionare.game.controllers.finalControllers.classses;
 
 
 

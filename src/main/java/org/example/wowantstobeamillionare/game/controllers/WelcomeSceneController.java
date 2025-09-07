@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers;
+package org.example.wowantstobeamillionare.game.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,7 +42,6 @@ public class WelcomeSceneController {
         imageView.setFitHeight(300);
         imageView.setFitWidth(300);
         imageView.setImage(image);
-
 
     }
     public void onPlayerModeClicked(ActionEvent actionEvent) throws SQLException {

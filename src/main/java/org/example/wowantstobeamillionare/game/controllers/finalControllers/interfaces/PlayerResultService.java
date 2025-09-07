@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.interfaces;
+package org.example.wowantstobeamillionare.game.controllers.finalControllers.interfaces;
 
 import java.sql.SQLException;
 

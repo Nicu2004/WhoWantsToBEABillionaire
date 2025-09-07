@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="questInterface" alignment="CENTER" pickOnBounds="false" prefHeight="377.0" prefWidth="461.0" spacing="20.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.wowantstobeamillionare.game.controllers.sceneControllers.InitiateGameController">
+<VBox fx:id="questInterface" alignment="CENTER" pickOnBounds="false" prefHeight="377.0" prefWidth="461.0" spacing="20.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.wowantstobeamillionare.game.controllers.InitiateGameController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>

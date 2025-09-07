@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.finalControllers.classses;
+package org.example.wowantstobeamillionare.game.controllers.finalControllers.classses;
 
 public class TopPlayer {
     private final String playerName;

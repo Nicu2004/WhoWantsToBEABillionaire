@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.sceneControllers.gameEngine;
+package org.example.wowantstobeamillionare.game.controllers.gameEngine;
 
 import javafx.scene.control.Button;
 
