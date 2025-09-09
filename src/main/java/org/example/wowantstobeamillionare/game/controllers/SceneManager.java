@@ -24,7 +24,7 @@ public class SceneManager {
             primaryStage.setResizable(false);
             primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/org/example/wowantstobeamillionare/" + fxmlFile));
-            System.out.println(fxmlFile);
+
             Parent root = loader.load();
 
             Object controller = loader.getController();
@@ -40,7 +40,7 @@ public class SceneManager {
             primaryStage.setResizable(false);
             primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         } catch (Exception e) {
-            e.printStackTrace();
+           throw new  RuntimeException(e);
         }
     }
 
@@ -51,7 +51,6 @@ public class SceneManager {
             primaryStage.setResizable(false);
             primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/org/example/wowantstobeamillionare/" + fxmlFile));
-            System.out.println(fxmlFile);
             Parent root = loader.load();
             Scene scene = new Scene(root, 900, 600);
             primaryStage.setScene(scene);
@@ -67,7 +66,6 @@ public class SceneManager {
         if (primaryStage == null)
             return primaryStage;
         else {
-            System.out.println("Stage is null");
             return null;
         }
     }

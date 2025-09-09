@@ -1,10 +1,12 @@
 package org.example.wowantstobeamillionare.game.controllers.finalControllers.implementations;
 
 import org.example.wowantstobeamillionare.game.controllers.finalControllers.interfaces.PlayerResultService;
-import org.example.wowantstobeamillionare.game.database.PgStatemantClass;
+import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnectionPool;
 import org.example.wowantstobeamillionare.game.players.player.implementations.DefaultPlayerResultRepository;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,11 +20,15 @@ public class DataBaseResultsService implements PlayerResultService {
     }
     @Override
     public void savePlayerResult(String playerName, int score, String status) throws SQLException {
-        try{
-            repository.savePlayerResults(PgStatemantClass.createStmt(), playerName, score, status);
-        }catch(SQLException ex){
-            logger.log(Level.WARNING, ex.getMessage(), ex);
-            throw ex;
+        try(Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
+        ) {
+            assert conn != null;
+            try(Statement statement = conn.createStatement();){
+                repository.savePlayerResults(statement, playerName, score, status);
+            }
+        } catch(SQLException exception){
+            logger.log(Level.WARNING, exception.getMessage(), exception);
+            throw exception;
         }
     }
 }

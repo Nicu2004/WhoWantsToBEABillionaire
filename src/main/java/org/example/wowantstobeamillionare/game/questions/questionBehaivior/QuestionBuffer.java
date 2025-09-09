@@ -1,54 +1,84 @@
 package org.example.wowantstobeamillionare.game.questions.questionBehaivior;
 
-import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnection;
-import org.example.wowantstobeamillionare.game.database.PgStatemantClass;
+import org.example.wowantstobeamillionare.game.addon.DefaultTableCreator;
+import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnectionPool;
 
 import java.io.File;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.example.wowantstobeamillionare.game.addon.DatabaseTableChecker.tableExists;
+
 public class QuestionBuffer {
 
     File readFile = new File("questions.txt");
-
     public QuestionBuffer() {
     }
 
     public ArrayList<Question> loadQuestions() throws SQLException {
+      try {
+          if (tableExists("questions")) {
 
-        return questionReader();
+          } else {
+
+              DefaultTableCreator.createQuestionTable();
+          }
+          return questionReader();
+      }catch(Exception e) {
+          e.printStackTrace();
+          try{
+              Scanner sc = new Scanner(readFile);
+              ArrayList<Question> questions = questionReaderFromFile(sc);
+              sc.close();
+              return questions;
+          }catch (Exception fileError) {
+                fileError.printStackTrace();
+          }
+      }
+        return new ArrayList<>();
     }
     public ArrayList<Question> questionReader() throws SQLException {
+
         ArrayList<Question> questions =  new ArrayList<>();
-        if (DefaultDataBaseConnection.getConn() == null) {
-            System.out.println("Connection is null so the question wont load");
+
+        if (DefaultDataBaseConnectionPool.create().getConnection() == null) {
+
             try{
                 Scanner reader =new Scanner(readFile);
                 questions = questionReaderFromFile(reader);
+                reader.close();
+
             }catch(Exception e){
-                System.out.println("Error reading file");
+                e.printStackTrace();
             }
         } else {
             questions =loadQuestionsFromDatabase();
         }
-        System.out.println(questions.getFirst().getQuestion());
         return questions;
     }
     public ArrayList<Question> loadQuestionsFromDatabase() throws SQLException {
-        Statement statement = PgStatemantClass.createStmt();
+        if(isTableEmptyEfficient("questions")) {
+
+            try{
+                Scanner reader =new Scanner(readFile);
+                PopulateDatabaseWithQuestions(questionReaderFromFile(reader));
+                reader.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
         ArrayList<Question> questions = new ArrayList<>();
-        System.out.println("Connection is " + DefaultDataBaseConnection.getConn());
-        String sql = "SELECT question_order, question, ans1, ans2, ans3, ans4, correct_answer FROM questions";
-        try (
+        String sql = "SELECT id, question, ans1, ans2, ans3, ans4, correct_answer FROM questions";
+        try (Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
+                Statement statement = conn.createStatement();
                 ResultSet rs = statement.executeQuery(sql)) {
             while (rs.next()) {
-                int id = rs.getInt("question_order");
+                int questionOrder = rs.getInt("id");
                 String questionText = rs.getString("question");
                 String firstAnswer = rs.getString("ans1");
                 String secondAnswer = rs.getString("ans2");
@@ -60,7 +90,7 @@ public class QuestionBuffer {
                 answers.add(secondAnswer);
                 answers.add(thirdAnswer);
                 answers.add(fourthAnswer);
-                questions.add(new Question(id, questionText, answers, correctAnswer));
+                questions.add(new Question(questionText, answers, correctAnswer));
             }
         }
         return questions;
@@ -71,7 +101,7 @@ public class QuestionBuffer {
             // read question line number and question text
             String questionLine = reader.nextLine();
             Scanner lineScanner = new Scanner(questionLine);
-            int questionNumber = lineScanner.nextInt();
+
             String questionText = lineScanner.hasNext() ? lineScanner.nextLine().trim() : "";
             lineScanner.close();
 
@@ -80,12 +110,11 @@ public class QuestionBuffer {
             var answers = answerReader(answerLine);
 
             int correctAnswer = Integer.parseInt(reader.nextLine().trim());
-            Question q = new Question(questionNumber, questionText, answers, correctAnswer);
+            Question q = new Question(questionText, answers, correctAnswer);
             questions.add(q);
         }
         return questions;
     }
-
     public List<String> answerReader (String answerLine){
         List<String> answers = new ArrayList<>(4);
         Scanner answerLineScanner = new Scanner(answerLine);
@@ -97,4 +126,40 @@ public class QuestionBuffer {
         answerLineScanner.close();
         return answers;
     }
+    private void PopulateDatabaseWithQuestions(ArrayList<Question> questions) {
+        String sql = "INSERT INTO questions (question, ans1, ans2, ans3, ans4, correct_answer) VALUES (?, ?, ?, ?, ?, ?)";
+        try(Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql)
+        ){
+           conn.setAutoCommit(false);
+
+            for (Question q : questions) {
+                statement.setString(1, q.getQuestion());
+                statement.setString(2, q.getFirstAnswer());
+                statement.setString(3, q.getSecondAnswer());
+                statement.setString(4, q.getThirdAnswer());
+                statement.setString(5, q.getFourthAnswer());
+                statement.setInt(6, q.getCorrectAnswer());
+                statement.addBatch();
+            }
+            int[] results = statement.executeBatch();
+
+            conn.commit();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean isTableEmptyEfficient(String tableName) throws SQLException {
+        String sql = "SELECT 1 FROM " + tableName + " LIMIT 1";
+
+        try (Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            boolean isEmpty = !rs.next(); // If no rows, table is empty
+            return isEmpty;
+        }
+    }
 }
+

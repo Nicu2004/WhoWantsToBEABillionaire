@@ -1,45 +1,46 @@
 package org.example.wowantstobeamillionare.game.addon;
 
-import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnection;
-import org.example.wowantstobeamillionare.game.database.PgStatemantClass;
+import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnectionPool;
 import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
 public class PlayersTopGames{
-    Player player1, player2, player3;
-    List<Player> players;
-    Statement  statement;
-    TopPlayersClass topPlayersClass;
 
+    private List<Player> players;
+    Statement  statement;
+    Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
     public PlayersTopGames() throws SQLException {
         players = new ArrayList<>();
-        statement = PgStatemantClass.createStmt();
-        topPlayersClass = new TopPlayersClass();
+
     }
     private List<Player> loadPlayers() throws SQLException {
-        if(DefaultDataBaseConnection.getConn()!=null) {
-            String sql  = "SELECT * FROM players";
-            try(
-                    ResultSet resultSet = statement.executeQuery(sql)){
-                while(resultSet.next()){
-                    int score = resultSet.getInt("score");
-                    String name = resultSet.getString("name");
-                    String state = resultSet.getString("result");
-                    players.add(new Player(name,  score, state));
+        List<Player> loadedPlayers = new ArrayList<>();
+        try(Connection conn = DefaultDataBaseConnectionPool.create().getConnection()){
+            if(conn == null || conn.isClosed()){
+                loadedPlayers.add(new Player("NULL0", 0, "NULL"));
+                loadedPlayers.add(new Player("NULL1", 0, "NULL"));
+                loadedPlayers.add(new Player("NULL2", 0, "NULL"));
+                return loadedPlayers;
+            }
+            String sql = "SELECT * from players";
+            try(Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql)){
+                while(rs.next()){
+                    int score = rs.getInt("score");
+                    String name = rs.getString("name");
+                    String state = rs.getString("result");
+                    loadedPlayers.add(new Player(name, score, state));
                 }
             }
-
+        }catch(SQLException e){
+            loadedPlayers.add(new Player("NULL0", 0, "NULL"));
         }
-        else {
-            players.add(new Player("NULL0",  0, "NULL"));
-            players.add(new Player("NULL1",  0, "NULL"));
-            players.add(new Player("NULL2",  0, "NULL"));
-        }
-        return players;
+        return loadedPlayers;
     }
     public List<TopPlayersClass> loadTopPlayers() throws SQLException {
         players = loadPlayers();
@@ -67,7 +68,6 @@ public class PlayersTopGames{
                }
             }
         }
-        System.out.println("Total Games: "+playersTopGames.size());
         playersTopGames.sort((o1, o2) -> Integer.compare(o2.getTotalGames(), o1.getTotalGames()));
         return playersTopGames;
     }

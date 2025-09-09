@@ -32,7 +32,7 @@ public class AnswerValidator implements AnswerValidatorService {
             status.setFill(Color.GREEN);
             status.setFont(Font.font("System", FontWeight.BOLD, 20));
             score++;
-            System.out.println("Current score is "+ score);
+
             player.setScore(score);
             currentIndex++;
             return currentIndex;

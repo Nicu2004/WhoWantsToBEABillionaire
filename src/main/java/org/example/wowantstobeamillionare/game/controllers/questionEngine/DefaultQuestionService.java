@@ -57,7 +57,6 @@ public class DefaultQuestionService implements QuestionService {
         }
         if(currentIndex<groupedQuestions.size()) {
             currentQuestion = groupedQuestions.get(currentIndex);
-            System.out.println(currentQuestion.getQuestion());
             questionField.setText(currentQuestion.getQuestion());
             ButtonsBehavior.enableAllButtons(ans1, ans2, ans3, ans4);
             ans1.setText(currentQuestion.getFirstAnswer());

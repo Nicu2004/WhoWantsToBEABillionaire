@@ -29,22 +29,22 @@ public class FiftyFifty implements LifeLine {
             }
             if(randomNumber == 0) {
                 gameEngineSceneController.disableSpecificButton(1);
-                System.out.println("Button 1 disabled");
+
                 disabledButtons.add(0);
             }
             else if(randomNumber == 1) {
                 gameEngineSceneController.disableSpecificButton(2);
-                System.out.println("Button 2 disabled");
+
                 disabledButtons.add(1);
             }
             else if(randomNumber == 2) {
                 gameEngineSceneController.disableSpecificButton(3);
-                System.out.println("Button 3 disabled");
+
                 disabledButtons.add(2);
             }
             else {
                 gameEngineSceneController.disableSpecificButton(4);
-                System.out.println("Button 4 disabled");
+
                 disabledButtons.add(3);
             }
             numberToBeDesabled++;

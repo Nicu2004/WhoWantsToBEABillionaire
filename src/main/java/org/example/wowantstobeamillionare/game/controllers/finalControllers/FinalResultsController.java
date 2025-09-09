@@ -53,7 +53,7 @@ public class FinalResultsController {
     }
     public void setPlayerFinalResults(Player player) throws SQLException
     {
-        System.out.println("Player "+player.getName()+" has been successfully set");
+
 
         PlayerGameResults result = new PlayerGameResults(
                 player.getName(),

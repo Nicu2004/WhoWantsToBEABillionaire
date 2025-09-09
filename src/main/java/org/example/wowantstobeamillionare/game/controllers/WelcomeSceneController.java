@@ -46,11 +46,11 @@ public class WelcomeSceneController {
     }
     public void onPlayerModeClicked(ActionEvent actionEvent) throws SQLException {
         isPlayer = true;
-        System.out.println("player mode clicked");
+
         SceneManager.switchTo("playerInterface.fxml");
     }
     public void onGuestModeClicked(ActionEvent actionEvent) throws SQLException {
-        System.out.println("guest mode clicked");
+
         isPlayer = false;
 
         SceneManager.switchTo("guestInterface.fxml");

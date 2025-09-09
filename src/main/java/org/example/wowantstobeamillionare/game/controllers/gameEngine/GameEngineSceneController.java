@@ -61,7 +61,6 @@ public class GameEngineSceneController {
     public void answerHandler(ActionEvent actionEvent) {
         Button source = (Button) actionEvent.getSource();
         currentIndex = answerValidator.answerHandlerService(source, defaultQuestionService.getCurrentQuestion(), status,player, currentIndex);
-        System.out.println("Current index is "+currentIndex);
         ButtonsBehavior.disableAllButtons(ans1, ans2, ans3, ans4);
         nextQuestion();
     }

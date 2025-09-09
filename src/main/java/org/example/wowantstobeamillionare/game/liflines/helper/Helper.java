@@ -26,8 +26,6 @@ public class Helper {
         if(l != null)
         {
             l.execute(question, gameEngineSceneController);
-        }else {
-            System.out.println("The life line " + name + " does not exist.");
         }
     }
 

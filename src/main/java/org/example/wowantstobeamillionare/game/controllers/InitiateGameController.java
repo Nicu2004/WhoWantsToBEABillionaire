@@ -27,7 +27,7 @@ public class InitiateGameController {
     }
     @FXML
     public void initialize() {
-        System.out.println("PlayerController initialize");
+
     }
     @FXML
     public void initiatePlayerGame() {
@@ -36,7 +36,6 @@ public class InitiateGameController {
            return;
        }
         player = playerService.createPlayer(enterNameArea.getText());
-        System.out.println("Username is "+ player.getName());
         SceneManager.switchTo("playerGameScene.fxml" , player);
     }
 }
