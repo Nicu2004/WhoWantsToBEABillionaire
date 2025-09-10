@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static org.example.wowantstobeamillionare.game.addon.Log4j.logger;
+
 public class DefaultTableCreator{
     public static void createUserTable() {
         try{
@@ -22,7 +24,7 @@ public class DefaultTableCreator{
         """;
         statemnt.execute(createTableSQL);
         }catch(SQLException e){
-            e.printStackTrace();
+            logger.error("Error log message", e);
         }
     }
     public static void createQuestionTable() {
@@ -44,7 +46,7 @@ public class DefaultTableCreator{
             statemnt.execute(createTableSQL);
 
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Error creating question table", e);
         }
     }
 }

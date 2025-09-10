@@ -4,6 +4,7 @@ import org.example.wowantstobeamillionare.game.addon.DefaultTableCreator;
 import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnectionPool;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.example.wowantstobeamillionare.game.addon.DatabaseTableChecker.tableExists;
+import static org.example.wowantstobeamillionare.game.addon.Log4j.logger;
 
 public class QuestionBuffer {
 
@@ -35,8 +37,8 @@ public class QuestionBuffer {
               ArrayList<Question> questions = questionReaderFromFile(sc);
               sc.close();
               return questions;
-          }catch (Exception fileError) {
-                fileError.printStackTrace();
+          }catch (FileNotFoundException fileError) {
+              logger.error("Error log message",  fileError);
           }
       }
         return new ArrayList<>();
@@ -53,7 +55,7 @@ public class QuestionBuffer {
                 reader.close();
 
             }catch(Exception e){
-                e.printStackTrace();
+                logger.error("Error reading message", e);
             }
         } else {
             questions =loadQuestionsFromDatabase();
@@ -68,7 +70,7 @@ public class QuestionBuffer {
                 PopulateDatabaseWithQuestions(questionReaderFromFile(reader));
                 reader.close();
             }catch(Exception e){
-                e.printStackTrace();
+                logger.error("Error loading from database", e);
             }
         }
 

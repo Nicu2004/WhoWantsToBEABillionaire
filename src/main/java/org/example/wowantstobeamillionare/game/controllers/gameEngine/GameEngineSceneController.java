@@ -29,6 +29,7 @@ public class GameEngineSceneController {
     public Button fiftyFifty;
     @FXML
     public Button callFriend;
+    public Text money;
     @FXML
     private TextField questionField;
     @FXML
@@ -60,7 +61,7 @@ public class GameEngineSceneController {
     }
     public void answerHandler(ActionEvent actionEvent) {
         Button source = (Button) actionEvent.getSource();
-        currentIndex = answerValidator.answerHandlerService(source, defaultQuestionService.getCurrentQuestion(), status,player, currentIndex);
+        currentIndex = answerValidator.answerHandlerService(source, defaultQuestionService.getCurrentQuestion(), status, money,player, currentIndex);
         ButtonsBehavior.disableAllButtons(ans1, ans2, ans3, ans4);
         nextQuestion();
     }

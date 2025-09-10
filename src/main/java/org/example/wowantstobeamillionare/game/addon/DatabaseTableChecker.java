@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static org.example.wowantstobeamillionare.game.addon.Log4j.logger;
+
 public class DatabaseTableChecker {
 
     public static boolean tableExists(String tableName) {
@@ -14,7 +16,6 @@ public class DatabaseTableChecker {
                 "SELECT FROM information_schema.tables " +
                 "WHERE table_schema = 'public' " +
                 "AND table_name = ?)";
-
 
         try(Connection connection = DefaultDataBaseConnectionPool.create().getConnection()) {
             assert connection != null;
@@ -27,7 +28,7 @@ public class DatabaseTableChecker {
                 }
             }
         } catch (SQLException e) {
-           throw new RuntimeException(e);
+            logger.error("Error", e);
         }
         return false;
     }

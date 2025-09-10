@@ -2,20 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="org.example.wowantstobeamillionare.game.controllers.gameEngine.GameEngineSceneController"
-          style="-fx-background-color: linear-gradient(to bottom, #16213e, #0f3460, #533483);">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #16213e, #0f3460, #533483);" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.wowantstobeamillionare.game.controllers.gameEngine.GameEngineSceneController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,29 +40,24 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <Button fx:id="audience" text="Ask Audience"
-                     onAction="#lifeLineHandler"
-                     minWidth="120" minHeight="40"
-                     styleClass="lifeline-button"
-                     GridPane.halignment="CENTER"/>
+             <Button fx:id="audience" minHeight="40" minWidth="120" onAction="#lifeLineHandler" styleClass="lifeline-button" text="Ask Audience" GridPane.halignment="CENTER" />
 
-             <Button fx:id="fiftyFifty" text="FIFTY-FIFTY"
-                     onAction="#lifeLineHandler"
-                     minWidth="120" minHeight="40"
-                     styleClass="lifeline-button"
-                     GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+             <Button fx:id="fiftyFifty" minHeight="40" minWidth="120" onAction="#lifeLineHandler" styleClass="lifeline-button" text="FIFTY-FIFTY" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 
-             <Button fx:id="callFriend" text="Call Friend"
-                     onAction="#lifeLineHandler"
-                     minWidth="120" minHeight="40"
-                     styleClass="lifeline-button"
-                     GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+             <Button fx:id="callFriend" minHeight="40" minWidth="120" onAction="#lifeLineHandler" styleClass="lifeline-button" text="Call Friend" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-        <Button fx:id="ans1" onAction="#answerHandler" minHeight="50"  minWidth="140" styleClass="answer-button" text="Answer 1" GridPane.halignment="CENTER" GridPane.rowIndex="2" wrapText="true" />
-        <Button fx:id="ans2" onAction="#answerHandler" minHeight="50"  minWidth="140" styleClass="answer-button" text="Answer 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" wrapText="true"/>
-        <Button fx:id="ans3" onAction="#answerHandler" minHeight="50"  minWidth="140" styleClass="answer-button" text="Answer 3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" wrapText="true" />
-        <Button fx:id="ans4" onAction="#answerHandler" minHeight="50"  minWidth="140" styleClass="answer-button" text="Answer 4" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" wrapText="true"/>
-        <Text fx:id="status" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+        <Button fx:id="ans1" minHeight="50" minWidth="140" onAction="#answerHandler" styleClass="answer-button" text="Answer 1" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Button fx:id="ans2" minHeight="50" minWidth="140" onAction="#answerHandler" styleClass="answer-button" text="Answer 2" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Button fx:id="ans3" minHeight="50" minWidth="140" onAction="#answerHandler" styleClass="answer-button" text="Answer 3" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Button fx:id="ans4" minHeight="50" minWidth="140" onAction="#answerHandler" styleClass="answer-button" text="Answer 4" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Text fx:id="status" fill="#00ff15" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="272.79999828338623" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font></Text>
+      <Text fx:id="money" fill="#ecff00" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0" GridPane.columnIndex="3">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Text>
     </children>
 </GridPane>

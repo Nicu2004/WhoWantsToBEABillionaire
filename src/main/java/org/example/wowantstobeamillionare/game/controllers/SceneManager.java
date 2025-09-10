@@ -10,6 +10,8 @@ import org.example.wowantstobeamillionare.game.controllers.finalControllers.Fina
 import org.example.wowantstobeamillionare.game.controllers.gameEngine.GameEngineSceneController;
 import org.example.wowantstobeamillionare.game.players.player.playerBehavior.Player;
 
+import static org.example.wowantstobeamillionare.game.addon.Log4j.logger;
+
 public class SceneManager {
 
     private static Stage primaryStage;
@@ -40,7 +42,7 @@ public class SceneManager {
             primaryStage.setResizable(false);
             primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         } catch (Exception e) {
-           throw new  RuntimeException(e);
+            logger.error("Error log message", e);
         }
     }
 
@@ -58,7 +60,7 @@ public class SceneManager {
             primaryStage.setResizable(false);
             primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error switching scenes ", e);
         }
     }
 

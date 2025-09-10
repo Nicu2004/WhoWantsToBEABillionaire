@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import static org.example.wowantstobeamillionare.game.addon.Log4j.logger;
+
 public class PlayersTopGames{
 
     private List<Player> players;
@@ -29,7 +31,8 @@ public class PlayersTopGames{
             }
             String sql = "SELECT * from players";
             try(Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(sql)){
+                ResultSet rs = statement.executeQuery(sql))
+            {
                 while(rs.next()){
                     int score = rs.getInt("score");
                     String name = rs.getString("name");
@@ -39,6 +42,7 @@ public class PlayersTopGames{
             }
         }catch(SQLException e){
             loadedPlayers.add(new Player("NULL0", 0, "NULL"));
+            logger.error("Error log message", e);
         }
         return loadedPlayers;
     }

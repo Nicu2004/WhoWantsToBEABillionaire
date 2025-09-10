@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Properties;
 import java.sql.Connection;
 
+import static org.example.wowantstobeamillionare.game.addon.Log4j.logger;
+
 
 public final class DefaultDataBaseConnectionPool implements ConnectionPool {
 
@@ -33,9 +35,9 @@ public final class DefaultDataBaseConnectionPool implements ConnectionPool {
     @Override
     public Connection getConnection() throws SQLException {
         if(connectionPool.isEmpty()){
-            throw new SQLException("Connection Pool is Empty");
+            logger.error("Connection pool is empty");
         }
-        Connection connection = connectionPool.removeLast();
+        Connection connection = connectionPool.remove(connectionPool.size() - 1);
         usedConnections.add(connection);
         return connection;
     }

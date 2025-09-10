@@ -24,24 +24,28 @@ public class AnswerValidator implements AnswerValidatorService {
             selectedOption = 3;
         return QuestionHandler.answerSwitch(question, selectedOption);
     }
-    public int answerHandlerService(Button answer, Question question, Text status,Player player, int currentIndex) {
+    public int answerHandlerService(Button answer, Question question, Text status, Text money,Player player, int currentIndex) {
         if(isCorrect(answer, question, status))
         {
             int score = player.getScore();
             status.setText("Correct");
             status.setFill(Color.GREEN);
-            status.setFont(Font.font("System", FontWeight.BOLD, 20));
+            status.setFont(Font.font("System", FontWeight.BOLD, 50));
             score++;
 
             player.setScore(score);
             currentIndex++;
+
+            money.setText("$"+score*200000);
+            money.setFill(Color.YELLOW);
+            money.setFont(Font.font("System", FontWeight.BOLD, 30));
             return currentIndex;
         }
         else
         {
             status.setText("Incorrect");
             status.setFill(Color.RED);
-            status.setFont(Font.font("System", FontWeight.BOLD, 20));
+            status.setFont(Font.font("System", FontWeight.BOLD, 50));
             return -1;
         }
     }
