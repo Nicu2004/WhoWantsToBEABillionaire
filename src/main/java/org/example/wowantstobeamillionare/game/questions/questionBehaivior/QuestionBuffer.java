@@ -1,5 +1,6 @@
 package org.example.wowantstobeamillionare.game.questions.questionBehaivior;
 
+import com.almasb.fxgl.core.util.Platform;
 import org.example.wowantstobeamillionare.game.addon.DefaultTableCreator;
 import org.example.wowantstobeamillionare.game.database.DefaultDataBaseConnectionPool;
 
@@ -21,50 +22,28 @@ public class QuestionBuffer {
     public QuestionBuffer() {
     }
 
-    public ArrayList<Question> loadQuestions() throws SQLException {
-      try {
-          if (tableExists("questions")) {
-
-          } else {
-
-              DefaultTableCreator.createQuestionTable();
-          }
-          return questionReader();
-      }catch(Exception e) {
-          e.printStackTrace();
-          try{
-              Scanner sc = new Scanner(readFile);
-              ArrayList<Question> questions = questionReaderFromFile(sc);
-              sc.close();
-              return questions;
-          }catch (FileNotFoundException fileError) {
-              logger.error("Error log message",  fileError);
-          }
-      }
-        return new ArrayList<>();
-    }
-    public ArrayList<Question> questionReader() throws SQLException {
-
-        ArrayList<Question> questions =  new ArrayList<>();
-
-        if (DefaultDataBaseConnectionPool.create().getConnection() == null) {
-
-            try{
-                Scanner reader =new Scanner(readFile);
-                questions = questionReaderFromFile(reader);
-                reader.close();
-
-            }catch(Exception e){
-                logger.error("Error reading message", e);
+    public ArrayList<Question> loadQuestions() {
+        try (Connection _ = DefaultDataBaseConnectionPool.create().getConnection()) {
+            if (tableExists("questions")) {
+                return loadQuestionsFromDatabase();
+            } else {
+                DefaultTableCreator.createQuestionTable();
+                try (Scanner scanner = new Scanner(readFile)) {
+                    PopulateDatabaseWithQuestions(questionReaderFromFile(scanner));
+                } catch (FileNotFoundException e) {
+                    logger.error("Questions file not found", e);
+                    System.exit(1);
+                }
+                return loadQuestionsFromDatabase();
             }
-        } else {
-            questions =loadQuestionsFromDatabase();
+        } catch (Exception e) {
+            logger.error("Database connection error", e);
+            System.exit(1);
         }
-        return questions;
+        return null;
     }
     public ArrayList<Question> loadQuestionsFromDatabase() throws SQLException {
         if(isTableEmptyEfficient("questions")) {
-
             try{
                 Scanner reader =new Scanner(readFile);
                 PopulateDatabaseWithQuestions(questionReaderFromFile(reader));
@@ -73,7 +52,6 @@ public class QuestionBuffer {
                 logger.error("Error loading from database", e);
             }
         }
-
         ArrayList<Question> questions = new ArrayList<>();
         String sql = "SELECT id, question, ans1, ans2, ans3, ans4, correct_answer FROM questions";
         try (Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
@@ -155,7 +133,6 @@ public class QuestionBuffer {
 
     public static boolean isTableEmptyEfficient(String tableName) throws SQLException {
         String sql = "SELECT 1 FROM " + tableName + " LIMIT 1";
-
         try (Connection conn = DefaultDataBaseConnectionPool.create().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

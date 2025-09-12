@@ -16,7 +16,7 @@ public final class DefaultDataBaseConnectionPool implements ConnectionPool {
     private String password = "admin";
     private List<Connection> connectionPool;
     private List<Connection> usedConnections= new ArrayList<>();
-    private static int INITIAL_POOL_SIZE = 10;
+    private static int INITIAL_POOL_SIZE = 5;
 
 
     private DefaultDataBaseConnectionPool(List<Connection> pool) {

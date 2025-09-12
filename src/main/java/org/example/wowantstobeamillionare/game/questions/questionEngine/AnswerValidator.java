@@ -1,4 +1,4 @@
-package org.example.wowantstobeamillionare.game.controllers.questionEngine;
+package org.example.wowantstobeamillionare.game.questions.questionEngine;
 
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
